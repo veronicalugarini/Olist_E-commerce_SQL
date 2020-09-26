@@ -202,7 +202,7 @@ GROUP BY seller_id
 ORDER BY SUM(price*order_item_id) ASC;
 ```
 
-**3.5. 10 seller com maior volume de vendas em cada ano**
+**3.5. Os 10 Sellers com maior volume de vendas em cada ano**
 
 **2016**
 
