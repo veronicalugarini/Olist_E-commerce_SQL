@@ -67,7 +67,7 @@ GROUP BY A.product_category_name
 ORDER BY A.product_category_name;
 ```
 
-**3. Análise ordenada por categoria com maior valor de vendas e identificação do valor total de produtos sem categoria definida**
+**2.1. Análise ordenada por categoria com maior valor de vendas e identificação do valor total de produtos sem categoria definida**
 
 ```
 SELECT 
@@ -84,7 +84,7 @@ GROUP BY A.product_category_name
 ORDER BY SUM(B.price) DESC;
 ```
 
-**3.1. Comparativo do valor de vendas total com cada ano - uso de subquerys**
+**2.2. Comparativo do valor de vendas total com cada ano - uso de subquerys**
 
 ```
 SELECT SUM(P.payment_value) AS 'VENDAS_TOTAL',
@@ -106,7 +106,7 @@ SELECT SUM(P.payment_value) AS 'VENDAS_TOTAL',
 FROM olist_order_payments_dataset P;
 ```
 
-**3.2. Total de vendas nos 3 anos**
+**2.3. Total de vendas nos 3 anos**
 
 ```
 SELECT SUM(O.price) AS VALOR_TOTAL_PRODUTOS, SUM(O.freight_value) AS VALOR_FRETE, 
@@ -116,7 +116,7 @@ INNER JOIN olist_order_payments_dataset P
 ON O.order_id = P.order_id;
 ```
 
-**3.3. Total de vendas por ano - separado, sem subquery**
+**2.4. Total de vendas por ano - separado, sem subquery**
 
 **2016**
 
