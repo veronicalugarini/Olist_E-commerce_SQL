@@ -1,4 +1,4 @@
-# Análise dataset do E-commerce Olist - Linguagem SQL
+# Análise dataset - E-commerce Olist - Linguagem SQL
 
 O dataset utilizado neste projeto de análise foi disponibilizado no Kaggle, pela Olist, loja de departamentos de e-commerce brasileira. A empresa conecta pequenas empresas de todo o Brasil a grandes marketplaces através da Loja Olist.
 
