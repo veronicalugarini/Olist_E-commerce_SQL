@@ -22,19 +22,21 @@ Foi utilizado o SQL Server para importar o dataset e fazer as análises de negó
 - **2. Vendas**: Análise das vendas por categoria e comprativo anual
 - **3. Sellers**: Análise do número de sellers por estado e desempenho dos melhores/piores
 
-**1. Selecionando BD**
+**Selecionando BD**
 
 ```
 USE OLIST;
 ```
 
-**1.1. Verificando colunas de uma tabela**
+**Verificando colunas de uma tabela**
 
 ```
 SP_HELP olist_geolocation_dataset;
 ```
 
-**1.2. Número de cidades por estado que tiveram pedidos entre 2016 E 2018**
+**1. Pedidos**
+
+**1.1. Número de cidades por estado que tiveram pedidos entre 2016 E 2018**
 
 ```
 SELECT geolocation_state AS ESTADO, COUNT(DISTINCT geolocation_city) AS NUMERO_CIDADES_COM_PEDIDO
@@ -43,7 +45,7 @@ GROUP BY geolocation_state
 ORDER BY 2 DESC;
 ```
 
-**1.3. Análise com ID do pedido e produtos com valor do produto em si, valor do frete e valor final da venda - utilização de JOIN de 3 tabelas**
+**1.2. Análise com ID do pedido e produtos com valor do produto em si, valor do frete e valor final da venda - utilização de JOIN de 3 tabelas**
 
 ```
 SELECT A.order_id AS NUM_PEDIDO, A.product_id AS NUM_PRODUTO, A.price AS VALOR_PRODUTO, A.freight_value AS VALOR_FRETE,
@@ -56,7 +58,9 @@ INNER JOIN olist_products_dataset C
 ON A.product_id = C.product_id;
 ```
 
-**2. Vendas por Categoria**
+**2. Vendas**
+
+**2.1. Vendas por Categoria**
 
 ```
 SELECT A.product_category_name AS CATEGORIA, SUM(B.price) AS VALOR_TOTAL
@@ -67,7 +71,7 @@ GROUP BY A.product_category_name
 ORDER BY A.product_category_name;
 ```
 
-**2.1. Análise ordenada por categoria com maior valor de vendas e identificação do valor total de produtos sem categoria definida**
+**2.2. Análise ordenada por categoria com maior valor de vendas e identificação do valor total de produtos sem categoria definida**
 
 ```
 SELECT 
@@ -84,7 +88,7 @@ GROUP BY A.product_category_name
 ORDER BY SUM(B.price) DESC;
 ```
 
-**2.2. Comparativo do valor de vendas total com cada ano - uso de subquerys**
+**2.3. Comparativo do valor de vendas total com cada ano - uso de subquerys**
 
 ```
 SELECT SUM(P.payment_value) AS 'VENDAS_TOTAL',
@@ -106,7 +110,7 @@ SELECT SUM(P.payment_value) AS 'VENDAS_TOTAL',
 FROM olist_order_payments_dataset P;
 ```
 
-**2.3. Total de vendas nos 3 anos**
+**2.4. Total de vendas nos 3 anos**
 
 ```
 SELECT SUM(O.price) AS VALOR_TOTAL_PRODUTOS, SUM(O.freight_value) AS VALOR_FRETE, 
@@ -116,7 +120,7 @@ INNER JOIN olist_order_payments_dataset P
 ON O.order_id = P.order_id;
 ```
 
-**2.4. Total de vendas por ano - separado, sem subquery**
+**2.5. Total de vendas por ano - separado, sem subquery**
 
 **2016**
 
